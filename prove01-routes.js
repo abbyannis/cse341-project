@@ -6,7 +6,7 @@ const requestHandler = (req, res) => {
         res.write('<html>');
         res.write('<head><title>Prove01</title><head>');
         res.write('<body>');
-        res.write('<h1>Hello! Welcome Prove 01!</h1>');
+        res.write('<h1>Hello! Welcome to Prove 01!</h1>');
         res.write('<p style="font-family:verdana;font-size:16px;">Enter Username</p>');
         res.write('<form action="/create-user" method="POST">');
         res.write('<input type="text" name="username">')
