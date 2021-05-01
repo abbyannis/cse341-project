@@ -1,0 +1,31 @@
+<%- include('includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/book.css">
+</head>
+<body>
+    <%- include('includes/navigation.ejs') %>
+
+    <main>
+        <% if (books.length > 0) { %>
+            <div class="center">
+                <% for (let book of books) { %>
+                <div>
+                    <div>
+                        <p><span class="book_label">Title:</span> <%= book.title %></p>
+                    </div>
+                    <div>
+                        <p><span class="book_label">Summary:</span> <%= book.summary %></p>
+                    </div>
+                    <br>
+                    <% } %>
+                    <div>
+                        <a href="/">
+                            <button class="btn">Add Another Book</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <% } else { %>
+            <h1>No Books Found!</h1>
+        <% } %>
+    </main>
+<%- include('includes/end.ejs') %>

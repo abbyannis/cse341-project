@@ -1,0 +1,23 @@
+button {
+    font: inherit;
+    font-weight: bold;
+    border: 1px solid #1b4b52;
+    background: #1b4b52;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+button:hover,
+button:active {
+    background-color: #1b4b52;
+    color: white;
+}
+.book_label {
+    font-weight: bold;
+    font-size: 18px;
+}
+.center {
+    margin: auto;
+    width: 60rem;
+}
