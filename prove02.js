@@ -10,7 +10,7 @@ app.set('views', 'prove02/views');
 
 const bookData = require('./prove02/routes/prove02-routes');
 
-app.use(bodyParser({extended: true}));
+app.use(bodyParser({extended: false}));
 app.use(express.static(path.join(__dirname, 'prove02/public')));
 
 app.use(bookData.routes);
