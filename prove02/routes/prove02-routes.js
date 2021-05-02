@@ -15,7 +15,6 @@ router.get('/', (req, res, next) => {
 
 router.post('/add-book', (req, res, next) => {
     books.push({title: req.body.title, summary: req.body.summary});
-    console.log(books[0]);
     res.redirect('/books');
 });
 

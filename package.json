@@ -5,12 +5,12 @@
   "engines": {
     "node": "12.x"
   },
-  "main": "index.js",
+  "main": "prove02.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon prove02.js",
     "test": "node test.js",
     "prove01": "nodemon prove01.js",
-    "prove02": "nodemon prove02/prove02.js"
+    "prove02": "nodemon prove02.js"
   },
   "dependencies": {
     "ejs": "^2.7.4",
