@@ -5,9 +5,9 @@
   "engines": {
     "node": "12.x"
   },
-  "main": "prove02.js",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon prove02.js",
+    "start": "nodemon index.js",
     "test": "node test.js", 
     "prove01": "nodemon prove01.js",
     "prove02": "nodemon prove02.js"
