@@ -14,10 +14,23 @@ const getProductsFromFile = cb => {
     if (err) {
       cb([]);
     } else {
-      cb(JSON.parse(fileContent));
+      const product = (JSON.parse(fileContent));
+      product.sort(GetSortOrder('title'));
+      cb(product);
     }
   });
 };
+
+function GetSortOrder(prop) {
+    return function(a, b) {
+        if (a[prop] > b[prop]) {
+            return 1;
+        } else if (a[prop] < b[prop]) {
+            return -1
+        }
+        return 0;
+    }
+}
 
 module.exports = class Product {
   constructor(id, title, imageUrl, description, price) {
