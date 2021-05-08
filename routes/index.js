@@ -3,6 +3,12 @@ const teamActivities = require('./teamRoutes');
 const proveAssignments = require('./proveRoutes');
 
 routes
+    .use('/teamActivities/proveAssignments/02', (req, res, next) => {
+        res.redirect('/proveAssignments/02');
+    })
+    .use('/teamActivities/proveAssignments/03', (req, res, next) => {
+        res.redirect('/proveAssignments/03');
+    })
     .use('/teamActivities', teamActivities)
     .use('/proveAssignments', proveAssignments)
 

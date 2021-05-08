@@ -1,0 +1,54 @@
+<div class="backdrop"></div>
+<header class="main-header">
+    <button id="side-menu-toggle">Menu</button>
+    <nav class="main-header-nav">
+        <ul class="main-header-item-list">
+            <li class="main-header-item"><a href="/">CSE341-Home</a></li>
+            <li class="main-header-item">
+                <a class="<%= path === '/' ? 'active' : '' %>" href="../../../../proveAssignments/03/">Shop</a>
+            </li>
+            <li class="main-header-item">
+                <a class="<%= path === '/products' ? 'active' : '' %>" href="../../../../proveAssignments/03/shop/products">Products</a>
+            </li>
+            <li class="main-header-item">
+                <a class="<%= path === '/cart' ? 'active' : '' %>" href="../../../../proveAssignments/03/shop/cart">Cart</a>
+            </li>
+            <li class="main-header-item">
+                <a class="<%= path === '/orders' ? 'active' : '' %>" href="../../../../proveAssignments/03/shop/orders">Orders</a>
+            </li>
+            <li class="main-header-item">
+                <a class="<%= path === '/admin/add-product' ? 'active' : '' %>" href="../../../../proveAssignments/03/admin/add-product">Add Product
+                </a>
+            </li>
+            <li class="main-header-item">
+                <a class="<%= path === '/admin/products' ? 'active' : '' %>" href="../../../../proveAssignments/03/admin/products">Admin Products
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<nav class="mobile-nav">
+        <ul class="mobile-nav__item-list">
+                <li class="mobile-nav__item">
+                    <a class="<%= path === '/' ? 'active' : '' %>" href="../../../../proveAssignments/03/">Shop</a>
+                </li>
+                <li class="mobile-nav__item">
+                    <a class="<%= path === '/products' ? 'active' : '' %>" href="../../../../proveAssignments/03/products">Products</a>
+                </li>
+                <li class="mobile-nav__item">
+                    <a class="<%= path === '/cart' ? 'active' : '' %>" href="../../../../proveAssignments/03/cart">Cart</a>
+                </li>
+                <li class="mobile-nav__item">
+                    <a class="<%= path === '/orders' ? 'active' : '' %>" href="../../../../proveAssignments/03/orders">Orders</a>
+                </li>
+                <li class="mobile-nav__item">
+                    <a class="<%= path === '/admin/add-product' ? 'active' : '' %>" href="../../../../proveAssignments/03/admin/add-product">Add Product
+                    </a>
+                </li>
+                <li class="mobile-nav__item">
+                    <a class="<%= path === '/admin/products' ? 'active' : '' %>" href="../../../../proveAssignments/03/admin/products">Admin Products
+                    </a>
+                </li>
+            </ul>
+</nav>
