@@ -123,7 +123,7 @@
   
   .card__image img {
     max-height:250px;
-
+    max-width: 100%;
   }
   
   .card__actions {
