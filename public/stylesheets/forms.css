@@ -21,4 +21,9 @@
   .form-control textarea:focus {
     outline-color: #00695c;
   }
+
+  .center-form {
+    margin: auto;
+    width: 30rem;
+  }
   
