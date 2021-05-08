@@ -34,13 +34,11 @@ router.post('/removeUser', (req, res, next) => {
 });
 
 function renderTa02(res, message = '') {
-    res.render('pages/ta02', { 
+    res.render('pages/teamActivities/ta02', { 
         title: 'Team Activity 02',
         names: usernames, 
         errorMessage: message,
-        path: '/ta02', // For pug, EJS 
-        activeTA03: true, // For HBS
-        contentCSS: true, // For HBS
+        path: '/ta02', // For pug, EJS
     });
 }
 

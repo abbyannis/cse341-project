@@ -7,7 +7,7 @@ const p = path.join(path.dirname(require.main.filename), 'data', 'data.json');
 
 router.get('/',(req, res, next) => {
         getData('', (data) => {
-            res.render('pages/ta03', { 
+            res.render('pages/teamActivities/ta03', { 
                 title: 'Team Activity 03', 
                 path: '/ta03', 
                 data: data
@@ -33,7 +33,7 @@ router.post('/filter', (req, res, next) => {
     let tag = req.body.tag;
 
     getData(tag, (data) => {
-        res.render('pages/ta03', { 
+        res.render('pages/teamActivities/ta03', { 
             title: 'Team Activity 03', 
             path: '/ta03', 
             data: data
