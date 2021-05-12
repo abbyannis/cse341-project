@@ -1,13 +1,29 @@
 const routes = require('express').Router();
 const mongoose = require('mongoose');
+const cors = require('cors');
+const MONGODB_URI_TEAM = process.env.MONGODB_URI_TEAM || 'mongodb+srv://abbyannis:2JoxKnRiQhaFn0kY@cluster0.epw8q.mongodb.net/teamDatabase?retryWrites=true&w=majority';
+
+const corsOptions = {
+    origin: "https://abbyannis-cse341-project.herokuapp.com/",
+    optionSuccessStatus: 200
+ };
+ routes.use(cors(corsOptions));
+ 
+ const options = {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    family: 4
+ }
 
 mongoose.connection.close();
 mongoose.connect(
-    'mongodb+srv://abbyannis:2JoxKnRiQhaFn0kY@cluster0.epw8q.mongodb.net/teamDatabase?retryWrites=true&w=majority',
-    { useNewUrlParser: true }
+    MONGODB_URI_TEAM,
+    options
 )
 .then(result => {
-    console.log(result);
+   // console.log(result);
 })
 .catch(err => 
     console.log(err)
