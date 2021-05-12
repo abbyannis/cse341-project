@@ -13,6 +13,7 @@
     "prove02": "nodemon prove02.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "ejs": "^2.7.4",
     "express": "^4.17.1",
     "express-handlebars": "^3.0.2",
