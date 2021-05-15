@@ -2,15 +2,15 @@
     </head>
 
     <body>
-        <%- include('../../includes/prove03/navigation03.ejs') %>
+        <%- include('../../includes/prove04/navigation04.ejs') %>
         <main class="centered details">
             <h1><%= product.title %></h1>
             <hr>
-            <div>
+            <div class="image">
                 <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
             </div>
-            <h2>$<%= product.price %></h2>
+            <h2>$<%= (product.price).toFixed(2) %></h2>
             <p><%= product.description %></p>
-            <%- include('../../includes/prove03/add-to-cart.ejs') %>
+            <%- include('../../includes/prove04/add-to-cart.ejs') %>
         </main>
         <%- include('../../includes/end.ejs') %>

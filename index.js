@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const routes = require('./routes')
-const User = require('./models/user');
+// const User = require('./models/user');
 const PORT = process.env.PORT || 5000 // So we can run on heroku || (OR) localhost:5000
 
 const app = express();

@@ -3,7 +3,7 @@
     </head>
 
     <body>
-        <%- include('../../includes/navigation03.ejs') %>
+        <%- include('../../includes/prove03/navigation03.ejs') %>
 
             <main>
                 <% if (prods.length > 0) { %>
@@ -27,9 +27,9 @@
                                     </p>
                                 </div>
                                 <div class="card__actions">
-                                    <a href="../../../../proveAssignments/03/admin/edit-product/<%= product._id %>?edit=true" class="btn">Edit</a>
+                                    <a href="../../../../proveAssignments/03/admin/edit-product/<%= product.id %>?edit=true" class="btn">Edit</a>
                                     <form action="../../../../proveAssignments/03/admin/delete-product" method="POST">
-                                        <input type="hidden" value="<%= product._id %>" name="productId">
+                                        <input type="hidden" value="<%= product.id %>" name="productId">
                                         <button class="btn" type="submit">Delete</button>
                                     </form>
 

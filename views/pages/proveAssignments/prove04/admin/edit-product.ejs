@@ -4,10 +4,10 @@
 </head>
 
 <body>
-   <%- include('../../includes/prove03/navigation03.ejs') %>
+   <%- include('../../includes/prove04/navigation04.ejs') %>
 
     <main>
-        <form class="product-form" action="../../../../proveAssignments/03/admin/<% if (editing) { %>edit-product<% } else { %>add-product<% } %>" method="POST">
+        <form class="product-form" action="../../../../proveAssignments/04/admin/<% if (editing) { %>edit-product<% } else { %>add-product<% } %>" method="POST">
             <div class="form-control">
                 <label for="title">Title</label>
                 <input type="text" name="title" id="title" value="<% if (editing) { %><%= product.title %><% } %>">
@@ -25,7 +25,7 @@
                 <textarea name="description" id="description" rows="5"><% if (editing) { %><%= product.description %><% } %></textarea>
             </div>
             <% if (editing) { %>
-                <input type="hidden" value="<%= product.id %>" name="productId">
+                <input type="hidden" value="<%= product._id %>" name="productId">
             <% } %>
 
             <button class="btn" type="submit"><% if (editing) { %>Update Product<% } else { %>Add Product<% } %></button>

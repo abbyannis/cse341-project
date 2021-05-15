@@ -1,11 +1,12 @@
-const Product = require('../models/product');
-const Order = require('../models/order');
+const Product = require('../../models/prove04/product');
+const Order = require('../../models/prove04/order');
 
 exports.getProducts = (req, res, next) => {
   Product.find()
+    .sort('title')
     .then(products => {
       console.log(products);
-      res.render('pages/proveAssignments/prove03/shop/product-list', {
+      res.render('pages/proveAssignments/prove04/shop/product-list', {
         prods: products,
         pageTitle: 'All Products',
         path: '/products'
@@ -20,7 +21,7 @@ exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
   Product.findById(prodId) // findById is mongoose method
     .then(product => {
-      res.render('pages/proveAssignments/prove03/shop/product-detail', {
+      res.render('pages/proveAssignments/prove04/shop/product-detail', {
         product: product,
         pageTitle: product.title,
         path: '/products'
@@ -31,8 +32,9 @@ exports.getProduct = (req, res, next) => {
 
 exports.getIndex = (req, res, next) => {
   Product.find()
+    .sort('title')
     .then(products => {
-      res.render('pages/proveAssignments/prove03/shop/index', {
+      res.render('pages/proveAssignments/prove04/shop/index', {
         prods: products,
         pageTitle: 'Shop',
         path: '/'
@@ -49,10 +51,29 @@ exports.getCart = (req, res, next) => {
     .execPopulate()
     .then(user => {
       const products = user.cart.items;
-      res.render('pages/proveAssignments/prove03/shop/cart', {
+      console.log(products);
+      let cartTotal = 0;
+      let message = "";
+      for (var i = 0; i < products.length; ) {
+        // if product still available, calculate product total
+        if(products[i].productId) {
+          products[i].totalPrice = Number(products[i].productId.price) * Number(products[i].quantity);
+          cartTotal += products[i].totalPrice;
+          i++;
+        // remove from array and cart if product unavailable, create removed message
+        } else {
+          console.log(products[i]._id);
+          req.user.removeDeletedItem(products[i]._id);
+          products.splice(i, 1);
+          message = "Please note: One or more items are no longer available and have been removed from your cart."
+        }
+      }
+      res.render('pages/proveAssignments/prove04/shop/cart', {
         path: '/cart',
         pageTitle: 'Your Cart',
-        products: products
+        products: products,
+        cartTotal: cartTotal,
+        message: message
       });
     })
     .catch(err => console.log(err));
@@ -65,8 +86,20 @@ exports.postCart = (req, res, next) => {
       return req.user.addToCart(product);
     })
     .then(result => {
-      console.log(result);
-      res.redirect('/proveAssignments/03/shop/cart');
+      res.redirect('/proveAssignments/04/shop/cart');
+    });
+
+};
+
+exports.updateCart = (req, res, next) => {
+  const prodId = req.body.productId;
+  const quantity = req.body.quantity;
+  Product.findById(prodId)
+    .then(product => {
+      return req.user.updateCart(product, quantity);
+    })
+    .then(result => {
+      res.redirect('/proveAssignments/04/shop/cart');
     });
 
 };
@@ -76,7 +109,7 @@ exports.postCartDeleteProduct = (req, res, next) => {
   req.user
     .removeFromCart(prodId)
     .then(result => {
-      res.redirect('/proveAssignments/03/shop/cart');
+      res.redirect('/proveAssignments/04/shop/cart');
     })
     .catch(err => console.log(err));
 };
@@ -102,7 +135,7 @@ exports.postOrder = (req, res, next) => {
     return req.user.clearCart();
   })
   .then(() => {
-    res.redirect('/proveAssignments/03/shop/orders');
+    res.redirect('/proveAssignments/04/shop/orders');
   })
   .catch(err => console.log(err));
 };
@@ -110,7 +143,7 @@ exports.postOrder = (req, res, next) => {
 exports.getOrders = (req, res, next) => {
   Order.find({ 'user.userId': req.user._id })
     .then(orders => {
-      res.render('pages/proveAssignments/prove03/shop/orders', {
+      res.render('pages/proveAssignments/prove04/shop/orders', {
         path: '/orders',
         pageTitle: 'Your Orders',
         orders: orders

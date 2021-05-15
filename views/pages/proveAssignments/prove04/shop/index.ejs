@@ -3,7 +3,7 @@
 </head>
 
 <body>
-    <%- include('../../includes/prove03/navigation03.ejs') %>
+    <%- include('../../includes/prove04/navigation04.ejs') %>
 
     <main>
         <% if (prods.length > 0) { %>
@@ -22,7 +22,7 @@
                             <p class="product__description"><%= product.description %></p>
                         </div>
                         <div class="card__actions">
-                            <%- include('../../includes/prove03/add-to-cart.ejs', {product: product}) %>
+                            <%- include('../../includes/prove04/add-to-cart.ejs', {product: product}) %>
                         </div>
                     </article>
                 <% } %>

@@ -1,7 +1,7 @@
-const Product = require('../models/product');
+const Product = require('../../models/prove04/product');
 
 exports.getAddProduct = (req, res, next) => {
-  res.render('pages/proveAssignments/prove03/admin/edit-product', {
+  res.render('pages/proveAssignments/prove04/admin/edit-product', {
     pageTitle: 'Add Product',
     path: '/admin/add-product',
     editing: false
@@ -23,9 +23,8 @@ exports.postAddProduct = (req, res, next) => {
   product
     .save() // coming from mongoose
     .then(result => {
-      // console.log(result);
       console.log('Created Product');
-      res.redirect('../../../../proveAssignments/03/admin/products');
+      res.redirect('../../../../proveAssignments/04/admin/products');
     })
     .catch(err => {
       console.log(err);
@@ -39,12 +38,11 @@ exports.getEditProduct = (req, res, next) => {
   }
   const prodId = req.params.productId;
   Product.findById(prodId)
-    // Product.findById(prodId)
     .then(product => {
       if (!product) {
         return res.redirect('/');
       }
-      res.render('pages/proveAssignments/prove03/admin/edit-product', {
+      res.render('pages/proveAssignments/prove04/admin/edit-product', {
         pageTitle: 'Edit Product',
         path: '/admin/edit-product',
         editing: editMode,
@@ -70,18 +68,17 @@ exports.postEditProduct = (req, res, next) => {
   })
   .then(result => {
     console.log('UPDATED PRODUCT!');
-    res.redirect('../../../../proveAssignments/03/admin/products');
+    res.redirect('../../../../proveAssignments/04/admin/products');
   })
 .catch(err => console.log(err));
 };
 
 exports.getProducts = (req, res, next) => {
   Product.find()
-    // .select('title price -_id') // choose specific pieces to return
-    // .populate('userId', 'name')
+    .sort('title')
     .then(products => {
       console.log(products);
-      res.render('pages/proveAssignments/prove03/admin/products', {
+      res.render('pages/proveAssignments/prove04/admin/products', {
         prods: products,
         pageTitle: 'Admin Products',
         path: '/admin/products'
@@ -95,7 +92,7 @@ exports.postDeleteProduct = (req, res, next) => {
   Product.findByIdAndRemove(prodId) // built-in mongoose method
     .then(() => {
       console.log('DESTROYED PRODUCT');
-      res.redirect('../../../../proveAssignments/03/admin/products');
+      res.redirect('../../../../proveAssignments/04/admin/products');
     })
     .catch(err => console.log(err));
 };

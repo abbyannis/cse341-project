@@ -1,0 +1,96 @@
+.cart__item-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin: auto;
+    width: 60rem;
+    max-width: 90%;
+  }
+  
+  .cart__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    margin-bottom: 1rem;
+  }
+
+  .cart_title {
+      width: 45%;
+  }
+
+  .cart_quantity {
+      width: 12%;
+      margin-left: 20px;
+  }
+
+  .quantity {
+      min-width: 60px;
+      width: 5%;
+      text-align: center;
+  }
+
+  .quantity input {
+      width: 90%;
+      margin-right: 20px;
+  }
+  
+  .buttons {
+      width: 15%;
+  }
+
+  .buttons button {
+    margin: 10px;
+    width: 100px;
+  }
+
+  .cart__item h1 {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    margin: 0;
+  }
+
+  .cart__item h2 {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    margin: 0;
+    font-weight: normal;
+  }
+
+  .thumb {
+    max-height: 150px;
+    max-width: 90%;
+    padding: 10px;
+  }
+  
+  .thumb_box {
+    width: 25%;
+    float: left;
+    text-align: center;
+  }
+
+  .normal {
+      font-weight: normal;
+  }
+
+  .cart_total {
+    margin: 0;
+    padding: 0;
+    margin: auto;
+    width: 60rem;
+    max-width: 90%;
+    text-align: right;
+    font-size: 0.75rem;
+  }
+
+  .message {
+    margin: 0;
+    padding: 0;
+    margin: auto;
+    width: 60rem;
+    max-width: 90%;
+    font-weight: bold;
+    color: #B00000;
+    text-align: center;
+  }
