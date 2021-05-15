@@ -1,4 +1,4 @@
-const Product = require('../../models/prove04/product');
+const Product = require('../../models/product');
 
 exports.getAddProduct = (req, res, next) => {
   res.render('pages/proveAssignments/prove04/admin/edit-product', {

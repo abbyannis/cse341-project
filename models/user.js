@@ -47,7 +47,9 @@ userSchema.methods.addToCart = function(product) {
     const updatedCart = {
         items: updatedCartItems 
     };
+    console.log("Updated items: " + updatedCartItems);
     this.cart = updatedCart;
+    console.log(this.cart);
     return this.save();
 };
 

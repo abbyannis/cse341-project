@@ -1,5 +1,5 @@
-const Product = require('../../models/prove04/product');
-const Order = require('../../models/prove04/order');
+const Product = require('../../models/product');
+const Order = require('../../models/order');
 
 exports.getProducts = (req, res, next) => {
   Product.find()

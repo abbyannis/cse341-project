@@ -1,5 +1,5 @@
 const routes = require('express').Router();
-const User = require('../../../models/prove04/user');
+const User = require('../../../models/user');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
