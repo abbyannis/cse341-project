@@ -1,9 +1,8 @@
 const routes = require('express').Router();
 const mongoose = require('mongoose');
 const cors = require('cors');
-const private = require('../../util/private') || require('aws-sdk');
 
-const MONGODB_URI_TEAM = process.env.MONGODB_URI_TEAM || private.MONGODB_URI_TEAM;
+const MONGODB_URI_TEAM = process.env.MONGODB_URI_TEAM; 
 
 const corsOptions = {
     origin: "https://abbyannis-cse341-project.herokuapp.com/",

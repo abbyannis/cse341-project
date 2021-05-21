@@ -2,10 +2,9 @@ const routes = require('express').Router();
 const User = require('../../../models/user');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const private = require('../../../util/private') || require('aws-sdk');
 const shopController = require('../../../controllers/prove04/shop');
 
-const MONGODB_URI = process.env.MONGODB_URI_SHOP || private.MONGODB_URI_SHOP;
+const MONGODB_URI = process.env.MONGODB_URI_SHOP; 
 
 const corsOptions = {
     origin: "https://abbyannis-cse341-project.herokuapp.com/",
