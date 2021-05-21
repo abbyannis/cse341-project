@@ -6,7 +6,7 @@ const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const csrf = require('csurf');
 const flash = require('connect-flash');
-const private = require('../../../util/private');
+const private = require('../../../util/private') || require('aws-sdk');
 
 const shopController = require('../../../controllers/prove05/shop');
 const MONGODB_URI = process.env.MONGODB_URI_SHOP5 || private.MONGODB_URI_SHOP5;
