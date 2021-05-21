@@ -153,6 +153,23 @@
     background-color: #1b4b52;
     color: white;
   }
+    
+  .user-message {
+    margin: auto;
+    width: 90%;
+    border: 1px solid #78539b;
+    background: #78539b;
+    padding: 0.5rem;
+    border-radius: 3px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .user-message--error {
+    border: #B00000;
+    background: #B00000;
+  }
   
   @media (min-width: 768px) {
     .main-header__nav {
@@ -162,4 +179,8 @@
     #side-menu-toggle {
       display: none;
     }
+  }
+
+  .user-message {
+    width: 30rem;
   }

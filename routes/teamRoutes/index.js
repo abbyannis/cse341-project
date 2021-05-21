@@ -34,6 +34,7 @@ routes
     .use('/02', require('./ta02'))
     .use('/03', require('./ta03'))
     .use('/04', require('./ta04'))
+    .use('/05', require('./ta05'))
    /* .get('/proveAssignments/02', (req, res, next) => {
         res.redirect('../../proveAssignments/02');
     })*/

@@ -2,10 +2,16 @@ const routes = require('express').Router();
 const User = require('../../../models/user');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
+const csrf = require('csurf');
+const flash = require('connect-flash');
 const private = require('../../../util/private');
-const shopController = require('../../../controllers/prove04/shop');
 
-const MONGODB_URI = process.env.MONGODB_URI || private.MONGODB_URI_SHOP;
+const shopController = require('../../../controllers/prove05/shop');
+const MONGODB_URI = process.env.MONGODB_URI || private.MONGODB_URI_SHOP5;
+
+const csrfProtection = csrf();
 
 const corsOptions = {
     origin: "https://abbyannis-cse341-project.herokuapp.com/",
@@ -21,6 +27,22 @@ const corsOptions = {
     family: 4
  }
 
+ const store = new MongoDBStore({
+     uri: MONGODB_URI,
+     collection: 'sessions'
+ });
+
+ routes.use(
+    session({ 
+        secret: 'my secret', 
+        resave: false, 
+        saveUninitialized: false,
+        store: store
+    })
+);
+routes.use(csrfProtection);
+routes.use(flash());
+
 routes.use((req, res, next) => {
     mongoose.connection.close();
     mongoose.connect(
@@ -28,20 +50,10 @@ routes.use((req, res, next) => {
         options
      )
      .then(result => {
-        User.findOne().then(user => { // findOne with no arguments always returns the first object
-            if (!user) {
-                const user = new User({
-                    name: 'abbyannis',
-                    email: 'abbyannis@gmail.com',
-                    password: 'password',
-                    cart: {
-                        items: []
-                    }
-                });
-                user.save();
-            }
-        })
-        User.findById('60a0335a72ef66391ca31c28')
+        if(!req.session.user) {
+            return next();         
+        }
+        User.findById(req.session.user._id)
             .then(user => {
                 req.user = user;
                 next();
@@ -51,11 +63,17 @@ routes.use((req, res, next) => {
             );
         });
     });
-    
+
+routes.use((req, res, next) => {
+    res.locals.isAuthenticated = req.session.isLoggedIn;
+    res.locals.csrfToken = req.csrfToken();
+    next();
+});
 
 routes
     .use('/admin', require('./admin'))
     .use('/shop', require('./shop'))
+    .use('/auth', require('./auth'))
     .get('/', shopController.getIndex);
 
 module.exports = routes;

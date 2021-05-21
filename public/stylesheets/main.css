@@ -30,9 +30,11 @@ form {
 }
 .main-header-nav {
   height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   font-weight: bold;
+  justify-content: space-between;
 }
 .main-header-item-list {
   list-style: none;
@@ -44,13 +46,20 @@ form {
   margin: 0 1rem;
   padding: 0;
 }
-.main-header-item a {
+.main-header-item a,
+.main-header-item button {
+  font: inherit;
+  background: transparent;
+  border: none;
   text-decoration: none;
   color: white;
+  cursor: pointer;
 }
 .main-header-item a:hover,
 .main-header-item a:active,
-.main-header-item a.active {
+.main-header-item a.active,
+.main-header-item button:hover,
+.main-header-item button:active {
   color: #0b3d44;
 }
 .jumbotron {
