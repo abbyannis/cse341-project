@@ -4,8 +4,6 @@ require('dotenv').config({path: path.join(__dirname, '.env')});
 const express = require('express');
 const bodyParser = require('body-parser');
 const routes = require('./routes')
-const p = path.join(path.dirname(require.main.filename), '.env');
-console.log(p);
 const PORT = process.env.PORT || 5000 // So we can run on heroku || (OR) localhost:5000
 
 const app = express();

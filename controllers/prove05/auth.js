@@ -34,7 +34,8 @@ exports.getSignup = (req, res, next) => {
     res.render('pages/proveAssignments/prove05/auth/signup', {
         path: '/signup',
         pageTitle: 'Signup',
-        errorMessage: message
+        errorMessage: message,
+        currentUser: req.session.user
     });
 };
 
@@ -51,6 +52,7 @@ exports.postLogin = (req, res, next) => {
                 .then(doMatch => {
                     if (doMatch) {
                         req.session.isLoggedIn = true;
+                        req.session.userType = user.userType;
                         req.session.user = user;
                         return req.session.save((err) => {
                             console.log(err);
@@ -70,6 +72,8 @@ exports.postLogin = (req, res, next) => {
 };
 
 exports.postSignup = (req, res, next) => {
+    const first = req.body.first;
+    const last = req.body.last;
     const email = req.body.email;
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword;
@@ -83,8 +87,11 @@ exports.postSignup = (req, res, next) => {
                 .hash(password, 12)
                 .then(hashedPassword => {
                     const user = new User({
+                        first: first,
+                        last: last,
                         email: email,
                         password: hashedPassword,
+                        userType: 'user',
                         cart: { items: [] }
                     });
                     return user.save();
@@ -94,8 +101,11 @@ exports.postSignup = (req, res, next) => {
                     return transporter.sendMail({
                         to: email,
                         from: 'abbygannis@gmail.com',
-                        subject: 'Signup succeeded!',
-                        html: '<h1>You successfully signed up!</h1>'
+                        subject: 'The Shop Registration Successful',
+                        html: '<p>Dear ' + first + ',</p>' +
+                            '<p>Thank your for registering with The Shop!</p>' +
+                            '<p>Sincerely,</p>' +
+                            '<p> The Shop Staff</p>'
                     });
                 })
                 .catch(err => {

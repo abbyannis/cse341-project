@@ -1,5 +1,8 @@
 <div class="backdrop"></div>
-<div class="header_title"><h1>Prove 05</h1></div>
+<div class="header_title">
+    <h1>The Shop</h1>
+    <p>Prove 05</p>
+</div>
 <header class="main-header">
     <button id="side-menu-toggle">Menu</button>
     <nav class="main-header-nav">
@@ -18,14 +21,20 @@
                 <li class="main-header-item">
                     <a class="<%= path === '/orders' ? 'active' : '' %>" href="../../../../proveAssignments/05/shop/orders">Orders</a>
                 </li>
-                <li class="main-header-item">
-                    <a class="<%= path === '/admin/add-product' ? 'active' : '' %>" href="../../../../proveAssignments/05/admin/add-product">Add Product
-                    </a>
-                </li>
-                <li class="main-header-item">
-                    <a class="<%= path === '/admin/products' ? 'active' : '' %>" href="../../../../proveAssignments/05/admin/products">Admin Products
-                    </a>
-                </li>
+                <% if (userType === 'admin') { %>
+                    <li class="main-header-item">
+                        <a class="<%= path === '/admin/add-product' ? 'active' : '' %>" href="../../../../proveAssignments/05/admin/add-product">Add Product
+                        </a>
+                    </li>
+                    <li class="main-header-item">
+                        <a class="<%= path === '/admin/products' ? 'active' : '' %>" href="../../../../proveAssignments/05/admin/products">Admin Products
+                        </a>
+                    </li>
+                    <li class="main-header-item">
+                        <a class="<%= path === '/admin/users' ? 'active' : '' %>" href="../../../../proveAssignments/05/admin/users">Users
+                        </a>
+                    </li>
+                <% } %>
             <% } %>
         </ul>
         <ul class="main-header-item-list">
@@ -37,6 +46,9 @@
                     <a class="<%= path === '/signup' ? 'active' : '' %>" href="../../../../proveAssignments/05/auth/signup">Signup</a>
                 </li>
             <% } else { %>
+                <li class="main-header-item-name">
+                    <a class="active">Hi, <%= currentUser.first %>!</a>
+                </li>
                 <li class="main-header-item">
                     <form action="../../../../proveAssignments/05/auth/logout" method="POST">
                         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
@@ -63,14 +75,20 @@
                     <li class="mobile-nav__item">
                         <a class="<%= path === '/orders' ? 'active' : '' %>" href="../../../../proveAssignments/05/orders">Orders</a>
                     </li>
-                    <li class="mobile-nav__item">
-                        <a class="<%= path === '/admin/add-product' ? 'active' : '' %>" href="../../../../proveAssignments/05/admin/add-product">Add Product
-                        </a>
-                    </li>
-                    <li class="mobile-nav__item">
-                        <a class="<%= path === '/admin/products' ? 'active' : '' %>" href="../../../../proveAssignments/05/admin/products">Admin Products
-                        </a>
-                    </li>
+                    <% if (userType === 'admin') { %>
+                        <li class="mobile-nav__item">
+                            <a class="<%= path === '/admin/add-product' ? 'active' : '' %>" href="../../../../proveAssignments/05/admin/add-product">Add Product
+                            </a>
+                        </li>
+                        <li class="mobile-nav__item">
+                            <a class="<%= path === '/admin/products' ? 'active' : '' %>" href="../../../../proveAssignments/05/admin/products">Admin Products
+                            </a>
+                        </li>
+                        <li class="main-header-item">
+                            <a class="<%= path === '/admin/users' ? 'active' : '' %>" href="../../../../proveAssignments/05/admin/users">Users
+                            </a>
+                        </li>
+                    <% } %>
                 <% } %>
             </ul>
             <ul class="mobile-nav__item-list">

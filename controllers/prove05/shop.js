@@ -5,12 +5,13 @@ exports.getProducts = (req, res, next) => {
   Product.find()
     .sort('title')
     .then(products => {
-      console.log(products);
       res.render('pages/proveAssignments/prove05/shop/product-list', {
         prods: products,
         pageTitle: 'All Products',
         path: '/products',
-        isAuthenticated: req.session.isLoggedIn
+        isAuthenticated: req.session.isLoggedIn,
+        userType: req.session.userType,
+        currentUser: req.session.user
       });
     })
     .catch(err => {
@@ -26,7 +27,9 @@ exports.getProduct = (req, res, next) => {
         product: product,
         pageTitle: product.title,
         path: '/products',
-        isAuthenticated: req.session.isLoggedIn
+        isAuthenticated: req.session.isLoggedIn,
+        userType: req.session.userType,
+        currentUser: req.session.user
       });
     })
     .catch(err => console.log(err));
@@ -41,7 +44,9 @@ exports.getIndex = (req, res, next) => {
         pageTitle: 'Shop',
         path: '/',
         isAuthenticated: req.session.isLoggedIn,
-        csrfToken: req.csrfToken()
+        csrfToken: req.csrfToken(),
+        userType: req.session.userType,
+        currentUser: req.session.user
       });
     })
     .catch(err => {
@@ -55,7 +60,6 @@ exports.getCart = (req, res, next) => {
     .execPopulate()
     .then(user => {
       const products = user.cart.items;
-      console.log("getCart: " + products);
       let cartTotal = 0;
       let message = "";
       for (var i = 0; i < products.length; ) {
@@ -66,7 +70,6 @@ exports.getCart = (req, res, next) => {
           i++;
         // remove from array and cart if product unavailable, create removed message
         } else {
-          console.log("delete: " + products[i]._id);
           req.user.removeDeletedItem(products[i]._id);
           products.splice(i, 1);
           message = "Please note: One or more items are no longer available and have been removed from your cart."
@@ -78,7 +81,9 @@ exports.getCart = (req, res, next) => {
         products: products,
         cartTotal: cartTotal,
         message: message,
-        isAuthenticated: req.session.isLoggedIn
+        isAuthenticated: req.session.isLoggedIn,
+        userType: req.session.userType,
+        currentUser: req.session.user
       });
     })
     .catch(err => console.log(err));
@@ -86,7 +91,6 @@ exports.getCart = (req, res, next) => {
 
 exports.postCart = (req, res, next) => {
   const prodId = req.body.productId;
-  console.log(prodId);
   Product.findById(prodId)
     .then(product => {
       return req.user.addToCart(product);
@@ -153,7 +157,9 @@ exports.getOrders = (req, res, next) => {
         path: '/orders',
         pageTitle: 'Your Orders',
         orders: orders,
-        isAuthenticated: req.session.isLoggedIn
+        isAuthenticated: req.session.isLoggedIn,
+        userType: req.session.userType,
+        currentUser: req.session.user
       });
     })
     .catch(err => console.log(err));

@@ -4,14 +4,16 @@
   
   .form-control label,
   .form-control input,
-  .form-control textarea {
+  .form-control textarea,
+  .form-control select {
     display: block;
     width: 100%;
     margin-bottom: 0.25rem;
   }
   
   .form-control input,
-  .form-control textarea {
+  .form-control textarea,
+  .form-control select {
     border: 1px solid #a1a1a1;
     font: inherit;
     border-radius: 2px;
@@ -27,3 +29,9 @@
     width: 30rem;
   }
   
+  .btn {
+    margin-bottom: 10px;
+    margin-right: 10px;
+    width: 150px;
+    float: left;
+  }

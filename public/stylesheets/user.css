@@ -1,0 +1,76 @@
+.user__item-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin: auto;
+    width: 60rem;
+    max-width: 90%;
+  }
+  
+  .user__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    margin-bottom: 1rem;
+  }
+
+  .user_title {
+      width: 45%;
+  }
+  
+  .buttons {
+      width: 20%;
+  }
+
+  .buttons button {
+    margin: 5px;
+    width: 150px;
+  }
+
+  .buttons a {
+      margin: 5px;
+      width: 150px;
+      text-align: center;
+  }
+
+  .user__item h1 {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    margin: 0;
+  }
+
+  .user__item h2 {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    margin: 0;
+    font-weight: normal;
+  }
+
+  .thumb {
+    max-height: 150px;
+    max-width: 90%;
+    padding: 10px;
+  }
+  
+  .thumb_box {
+    width: 25%;
+    float: left;
+    text-align: center;
+  }
+
+  .normal {
+      font-weight: normal;
+  }
+
+  .message {
+    margin: 0;
+    padding: 0;
+    margin: auto;
+    width: 60rem;
+    max-width: 90%;
+    font-weight: bold;
+    color: #B00000;
+    text-align: center;
+  }

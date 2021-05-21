@@ -3,13 +3,30 @@
 <head>
   <% include ../../includes/header.ejs %>
 </head>
-
-<body>
+<!-- <body style="background-color: <%= color %>"> -->
   <% include ../../includes/nav.ejs %>
 <div class="jumbotron text-center">
   <div class="container">
     <h1><%= title %></h1>
-    <form >
+    <h2><%= sessionCount %></h2>
+    <form class="product-form" action="../teamRoutes/ta05/change-style" method="POST">
+        <div class="form-group">
+            <label for="color">Enter a primary color for this page</label>
+            <input class="form-control" type="text" name="color" id="color">
+        </div>
+        <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+    </form>
+    <form class="product-form" action="../../../teamActivities/ta05/counter" method="POST">
+        <input type="hidden" value="1" name="counter">
+        <button class="btn btn-primary btn-lg" type="submit">Increment</button>
+    </form>
+    <form class="product-form" action="../teamRoutes/ta05/counter" method="POST">
+        <input type="hidden" value="-1" name="counter">
+        <button class="btn btn-primary btn-lg" type="submit">Decrement</button>
+    </form>
+    <form class="product-form" action="../teamRoutes/ta05/reset" method="POST">
+        <button class="btn btn-primary btn-lg" type="submit" >Reset</button>
+    </form>
   </div>
 </div>
 <div class="container">

@@ -30,9 +30,11 @@ routes.use((req, res, next) => {
         User.findOne().then(user => { // findOne with no arguments always returns the first object
             if (!user) {
                 const user = new User({
-                    name: 'abbyannis',
+                    first: 'Abby',
+                    last: 'Annis',
                     email: 'abbyannis@gmail.com',
                     password: 'password',
+                    userType: 'admin',
                     cart: {
                         items: []
                     }

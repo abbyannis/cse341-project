@@ -42,7 +42,8 @@ form {
   padding: 0;
   display: flex;
 }
-.main-header-item {
+.main-header-item,
+.main-header-item-name {
   margin: 0 1rem;
   padding: 0;
 }
@@ -111,4 +112,9 @@ form {
   text-align: center;
   color: #2c7783;
 }
+
+.header_title h1 {
+  margin-bottom: -1rem;
+}
+
 

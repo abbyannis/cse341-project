@@ -1,6 +1,7 @@
 const routes = require('express').Router();
 const mongoose = require('mongoose');
 const cors = require('cors');
+const session = require('express-session');
 
 const MONGODB_URI_TEAM = process.env.MONGODB_URI_TEAM; 
 
@@ -17,6 +18,14 @@ const corsOptions = {
     useFindAndModify: false,
     family: 4
  }
+
+ routes.use(
+    session({ 
+        secret: 'my secret', 
+        resave: false, 
+        saveUninitialized: false
+    })
+);
 
 mongoose.connection.close();
 mongoose.connect(

@@ -1,0 +1,40 @@
+<%- include('../../includes/head.ejs') %>
+    <link rel="stylesheet" href="/stylesheets/forms.css">
+    <link rel="stylesheet" href="/stylesheets/auth.css">
+</head>
+
+<body>
+   <%- include('../../includes/prove05/navigation.ejs') %>
+
+    <main>
+        <form class="login-form" action="../../../../proveAssignments/05/admin/update-user" method="POST">
+            <div class="form-control">
+                <label for="first">First Name</label>
+                <input type="text" name="first" id="first" value="<%= user.first %>">
+            </div>
+            <div class="form-control">
+                <label for="last">Last Name</label>
+                <input type="text" name="last" id="last" value="<%= user.last %>">
+            </div>
+            <div class="form-control">
+                <label for="email">Email Address</label>
+                <input type="text" name="email" id="email" value="<%= user.email %>">
+            </div>
+            <div class="form-control">
+                <label for="userType">User Type</label>
+                <select name="userType" id="userType" value='<%= user.userType %>'>
+                    <option value="admin" <% if (user.userType === 'admin') { %> selected <% } %>>Admin</option>
+                    <option value="user" <% if (user.userType === 'user') { %> selected <% } %>>User</option>
+                </select>
+            </div>
+            <input type="hidden" value="<%= user._id %>" name="userId">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button class="btn" type="submit">Update User</button>
+        </form>
+        <form class="login-form" action="../../../../proveAssignments/05/admin/delete-user" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <input type="hidden" value="<%= user._id %>" name="userId">
+            <button class="btn danger" type="submit">Delete User</button>
+        </form>
+    </main>
+<%- include('../../includes/end.ejs') %>
