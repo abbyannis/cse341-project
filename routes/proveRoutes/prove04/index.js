@@ -5,7 +5,7 @@ const cors = require('cors');
 const private = require('../../../util/private');
 const shopController = require('../../../controllers/prove04/shop');
 
-const MONGODB_URI = process.env.MONGODB_URI || private.MONGODB_URI_SHOP;
+const MONGODB_URI = process.env.MONGODB_URI_SHOP || private.MONGODB_URI_SHOP;
 
 const corsOptions = {
     origin: "https://abbyannis-cse341-project.herokuapp.com/",

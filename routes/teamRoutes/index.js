@@ -1,7 +1,9 @@
 const routes = require('express').Router();
 const mongoose = require('mongoose');
 const cors = require('cors');
-const MONGODB_URI_TEAM = process.env.MONGODB_URI_TEAM || 'mongodb+srv://abbyannis:2JoxKnRiQhaFn0kY@cluster0.epw8q.mongodb.net/teamDatabase?retryWrites=true&w=majority';
+const private = require('../../util/private');
+
+const MONGODB_URI_TEAM = process.env.MONGODB_URI_TEAM || private.MONGODB_URI_TEAM;
 
 const corsOptions = {
     origin: "https://abbyannis-cse341-project.herokuapp.com/",

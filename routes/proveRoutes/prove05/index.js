@@ -9,7 +9,7 @@ const flash = require('connect-flash');
 const private = require('../../../util/private');
 
 const shopController = require('../../../controllers/prove05/shop');
-const MONGODB_URI = process.env.MONGODB_URI || private.MONGODB_URI_SHOP5;
+const MONGODB_URI = process.env.MONGODB_URI_SHOP5 || private.MONGODB_URI_SHOP5;
 
 const csrfProtection = csrf();
 
