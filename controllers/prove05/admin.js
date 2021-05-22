@@ -104,7 +104,7 @@ exports.postDeleteProduct = (req, res, next) => {
 };
 
 exports.getUsers = (req, res, next) => {
-  User.find()
+  User.find( { email: { '$ne': req.session.user.email } } )
     .sort('last')
     .then(users => {
       res.render('pages/proveAssignments/prove05/admin/users', {
@@ -155,6 +155,8 @@ exports.postUpdateUser = (req, res, next) => {
     user.last = updatedLast;
     user.email = updatedEmail;
     user.userType = updatedUserType;
+    console.log(req.session.user.email);
+    console.log(updatedEmail);
     return user.save()
   })
   .then(result => {

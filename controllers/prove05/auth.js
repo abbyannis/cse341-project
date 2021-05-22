@@ -20,7 +20,9 @@ exports.getLogin = (req, res, next) => {
     res.render('pages/proveAssignments/prove05/auth/login', {
         path: '/login',
         pageTitle: 'Login',
-        errorMessage: message
+        errorMessage: message,
+        userType: req.session.userType,
+        currentUser: req.session.user
     });
 };
 
