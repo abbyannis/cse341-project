@@ -33,5 +33,10 @@
     margin-bottom: 10px;
     margin-right: 10px;
     width: 150px;
-    float: left;
+  }
+
+  .btn_flex {
+    margin-bottom: 10px;
+    margin-right: 10px;
+    width: auto;
   }
