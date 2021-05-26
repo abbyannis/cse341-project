@@ -192,7 +192,12 @@ exports.postDeleteProduct = (req, res, next) => {
 };
 
 exports.getUsers = (req, res, next) => {
-  User.find( { email: { '$ne': req.session.user.email } } )
+  User.find({ 
+    $and: [
+      { email: { '$ne': req.session.user.email } },
+      { email: { '$ne': 'abbygannis@gmail.com' } } 
+     ] 
+    })
     .sort('last')
     .then(users => {
       res.render('pages/proveAssignments/prove06/admin/users', {
