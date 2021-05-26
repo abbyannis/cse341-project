@@ -6,6 +6,7 @@ const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const csrf = require('csurf');
 const flash = require('connect-flash');
+const errorController = require('../../../controllers/prove06/error');
 
 const shopController = require('../../../controllers/prove06/shop');
 const MONGODB_URI = process.env.MONGODB_URI_SHOP; 
@@ -54,12 +55,15 @@ routes.use((req, res, next) => {
         }
         User.findById(req.session.user._id)
             .then(user => {
+                if (!user) {
+                    return next();
+                }
                 req.user = user;
                 next();
             })
-            .catch(err => 
-                console.log(err)
-            );
+            .catch(err => {
+                next(new Error(err));
+            });
         });
     });
 
@@ -73,6 +77,14 @@ routes
     .use('/admin', require('./admin'))
     .use('/shop', require('./shop'))
     .use('/auth', require('./auth'))
-    .get('/', shopController.getIndex);
+    .get('/500', errorController.get500)
+    .get('/', shopController.getIndex)
+    .use((error, req, res, next) => {
+        // res.redirect('../../../../proveAssignments/06/500');
+        res.status(500).render('pages/500', { pageTitle: 'Error!', path: '/500',
+        isAuthenticated: req.session.isLoggedIn,
+        userType: req.session.userType,
+        currentUser: req.session.user });
+    });
 
 module.exports = routes;
