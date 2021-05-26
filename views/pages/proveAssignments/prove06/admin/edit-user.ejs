@@ -29,12 +29,12 @@
             </div>
             <input type="hidden" value="<%= user._id %>" name="userId">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-            <button class="btn" type="submit">Update User</button>
+            <button class="btn btn_inline" type="submit">Update User</button>
         </form>
         <form class="login-form" action="../../../../proveAssignments/06/admin/delete-user" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <input type="hidden" value="<%= user._id %>" name="userId">
-            <button class="btn danger" type="submit">Delete User</button>
+            <button class="btn danger btn_inline" type="submit">Delete User</button>
         </form>
     </main>
 <%- include('../../includes/end.ejs') %>
