@@ -80,8 +80,7 @@ routes
     .get('/500', errorController.get500)
     .get('/', shopController.getIndex)
     .use((error, req, res, next) => {
-        // res.redirect('../../../../proveAssignments/06/500');
-        res.status(500).render('pages/500', { pageTitle: 'Error!', path: '/500',
+        res.status(500).render('pages/proveAssignments/prove06/500', { pageTitle: 'Error!', path: '/500',
         isAuthenticated: req.session.isLoggedIn,
         userType: req.session.userType,
         currentUser: req.session.user });

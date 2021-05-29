@@ -53,6 +53,9 @@ routes
             pagetTitle: 'Team Activities',
             path: '/' 
         });
+    })
+    .use((req, res, next) => {
+        res.render('pages/404', {title: '404 - Page Not Found', path: req.url});
     });
 
 module.exports = routes;
