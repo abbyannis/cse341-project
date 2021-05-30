@@ -7,18 +7,21 @@
    <%- include('../../includes/prove06/navigation.ejs') %>
 
     <main>
+        <% if (errorMessage) { %>
+            <div class="user-message user-message--error"><%= errorMessage %></div>
+        <% } %>
         <form class="login-form" action="../../../../proveAssignments/06/admin/update-user" method="POST">
             <div class="form-control">
                 <label for="first">First Name</label>
-                <input type="text" name="first" id="first" value="<%= user.first %>">
+                <input type="text" name="first" id="first" value="<%= first %>">
             </div>
             <div class="form-control">
                 <label for="last">Last Name</label>
-                <input type="text" name="last" id="last" value="<%= user.last %>">
+                <input type="text" name="last" id="last" value="<%= last %>">
             </div>
             <div class="form-control">
                 <label for="email">Email Address</label>
-                <input type="text" name="email" id="email" value="<%= user.email %>">
+                <input type="text" name="email" id="email" value="<%= email %>">
             </div>
             <div class="form-control">
                 <label for="userType">User Type</label>
@@ -27,13 +30,15 @@
                     <option value="user" <% if (user.userType === 'user') { %> selected <% } %>>User</option>
                 </select>
             </div>
-            <input type="hidden" value="<%= user._id %>" name="userId">
+            <input type="hidden" value="<%= userId %>" name="userId">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <input type="hidden" value="<%= user %>" name="user">
             <button class="btn btn_inline" type="submit">Update User</button>
         </form>
         <form class="login-form" action="../../../../proveAssignments/06/admin/delete-user" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-            <input type="hidden" value="<%= user._id %>" name="userId">
+            <input type="hidden" value="<%= userId %>" name="userId">
+            <input type="hidden" value="<%= user %>" name="user">
             <button class="btn danger btn_inline" type="submit">Delete User</button>
         </form>
     </main>

@@ -1,7 +1,7 @@
 const path = require('path');
 
 const express = require('express');
-const { body } = require('express-validator');
+const { check, body } = require('express-validator');
 
 const adminController = require('../../../controllers/prove06/admin');
 const isAdmin = require('../../../middleware/is-admin');
@@ -65,7 +65,20 @@ router.post(
 
 router.post('/delete-product', isAdmin, adminController.postDeleteProduct);
 
-router.post('/update-user', isAdmin, adminController.postUpdateUser);
+router.post('/update-user', 
+    [ 
+        check('email')
+            .isEmail()
+            .withMessage('Please enter a valid email')
+            .normalizeEmail(),
+        body('first')
+            .isLength({ min: 1 })
+            .withMessage('First name required'),
+        body('last')
+            .isLength({ min: 1 })
+            .withMessage('Last name required')   
+    ],
+isAdmin, adminController.postUpdateUser);
 
 router.post('/delete-user', isAdmin, adminController.postDeleteUser);
 

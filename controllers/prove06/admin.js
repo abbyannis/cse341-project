@@ -238,6 +238,11 @@ exports.getUpdateUser = (req, res, next) => {
         path: '/admin/edit-user',
         editing: editMode,
         user: user,
+        first: user.first,
+        last: user.last,
+        email: user.email,
+        userId: user._id,
+        errorMessage: "",
         isAuthenticated: req.session.isLoggedIn,
         userType: req.session.userType,
         currentUser: req.session.user
@@ -256,7 +261,27 @@ exports.postUpdateUser = (req, res, next) => {
   const updatedLast = req.body.last;
   const updatedEmail = req.body.email;
   const updatedUserType = req.body.userType;
-
+  const updatedUser = req.body.user;
+  
+  const errors = validationResult(req);
+  console.log(errors);
+  if (!errors.isEmpty()) {
+    console.log("user: " + updatedUser);
+    return res.render('pages/proveAssignments/prove06/admin/edit-user', {
+      pageTitle: 'Edit User',
+      path: '/admin/edit-user',
+      editing: true,
+      user: updatedUser,
+      first: updatedFirst,
+      last: updatedLast,
+      email: updatedEmail,
+      userId: userId,
+      errorMessage: errors.array()[0].msg,
+      isAuthenticated: req.session.isLoggedIn,
+      userType: req.session.userType,
+      currentUser: req.session.user,
+    });
+  }
   User.findById(userId).then(user => {
     user.first = updatedFirst;
     user.last = updatedLast;
@@ -269,11 +294,11 @@ exports.postUpdateUser = (req, res, next) => {
   .then(result => {
     res.redirect('../../../../proveAssignments/06/admin/users');
   })
-.catch(err => {
-  const error = new Error(err);
-      error.httpStatusCode = 500;
-      return next(error);
-});
+  .catch(err => {
+    const error = new Error(err);
+    error.httpStatusCode = 500;
+    return next(error);
+  });
 };
 
 exports.postDeleteUser = (req, res, next) => {
