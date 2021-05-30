@@ -14,7 +14,14 @@ routes
         });
     })
     .use((req, res, next) => {
-        res.status(404).render('pages/proveAssignments/prove06/404', { pageTitle: '404 - Page Not Found', path: req.url});
+        res.status(404)
+            .render('pages/proveAssignments/prove06/404', { 
+                pageTitle: '404 - Page Not Found', 
+                path: req.url,
+                isAuthenticated: req.session.isLoggedIn,
+                userType: req.session.userType,
+                currentUser: req.session.user
+            });
     });
 
 module.exports = routes;

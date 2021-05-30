@@ -16,6 +16,12 @@
     text-align: center;
 }
 
+.product_author {
+    font-size: 1rem;
+    text-align: center;
+    margin: auto;
+}
+
 .product__price {
     text-align: center;
     color: #4d4d4d;
@@ -25,3 +31,25 @@
 .product__description {
     text-align: center;
 }
+
+.card-index {
+    max-width: 65rem;
+    min-height: 600px;
+    padding: 1rem;
+    margin: auto;
+    padding: 1rem 5rem;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    filter: invert(100%);
+}
+
+.carousel .carousel-control-next a.active,
+.carousel .carousel-control-prev a.active {
+    background-color: #2c7783;
+}
+
+.carousel .carousel-indicators li {  background-color: #9bbfc4; }
+.carousel .carousel-indicators li.active { background-color: #2c7783; }
+

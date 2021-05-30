@@ -110,6 +110,7 @@
   }
   
   .card__header h1,
+  .card__header p,
   .card__content h1,
   .card__content h2,
   .card__content p {
@@ -124,6 +125,12 @@
   .card__image img {
     max-height:250px;
     max-width: 100%;
+  }
+
+  .card-img {
+    max-height:400px;
+    float: left;
+    padding-right: 1rem;
   }
   
   .card__actions {

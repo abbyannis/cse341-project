@@ -20,6 +20,7 @@ exports.getAddProduct = (req, res, next) => {
 
 exports.postAddProduct = (req, res, next) => {
   const title = req.body.title;
+  const author = req.body.author;
   const imageUrl = req.body.imageUrl;
   const price = req.body.price;
   const description = req.body.description;
@@ -33,6 +34,7 @@ exports.postAddProduct = (req, res, next) => {
       errorMessage: errors.array()[0].msg,
       product: {
         title: title,
+        author: author,
         imageUrl: imageUrl,
         price: price,
         description: description
@@ -46,6 +48,7 @@ exports.postAddProduct = (req, res, next) => {
   const product = new Product({
     // _id: new mongoose.Types.ObjectId('609f22e659fb5100040a0604'),
     title: title, 
+    author: author,
     price: price, 
     description: description, 
     imageUrl: imageUrl, 
@@ -115,6 +118,7 @@ exports.getEditProduct = (req, res, next) => {
 exports.postEditProduct = (req, res, next) => {
   const prodId = req.body.productId;
   const updatedTitle = req.body.title;
+  const updatedAuthor = req.body.author;
   const updatedPrice = req.body.price;
   const updatedImageUrl = req.body.imageUrl;
   const updatedDesc = req.body.description;
@@ -129,6 +133,7 @@ exports.postEditProduct = (req, res, next) => {
       errorMessage: errors.array()[0].msg,
       product: {
         title: updatedTitle,
+        author: updatedAuthor,
         imageUrl: updatedImageUrl,
         price: updatedPrice,
         description: updatedDesc,
@@ -147,6 +152,7 @@ exports.postEditProduct = (req, res, next) => {
       return res.redirect('../../../../proveAssignments/06');
     }
     product.title = updatedTitle;
+    product.author = updatedAuthor;
     product.price = updatedPrice;
     product.description = updatedDesc;
     product.imageUrl = updatedImageUrl;

@@ -3,34 +3,66 @@
 </head>
 
 <body>
-    <%- include('../../includes/prove06/navigation.ejs') %>
-
     <main>
-        <% if (prods.length > 0) { %>
-            <div class="grid">
-                <% for (let product of prods) { %>
-                    <article class="card product-item">
-                        <header class="card__header">
-                            <h1 class="product__title"><%= product.title %></h1>
-                        </header>
-                        <div class="card__image">
-                            <img src="<%= product.imageUrl %>"
-                                alt="<%= product.title %>">
-                        </div>
-                        <div class="card__content">
-                            <h2 class="product__price">$<%= (product.price).toFixed(2) %></h2>
-                            <p class="product__description"><%= product.description %></p>
-                        </div>
-                        <div class="card__actions">
-                            <% if (isAuthenticated) { %>
-                                <%- include('../../includes/prove06/add-to-cart.ejs', {product: product}) %>
+        <%- include('../../includes/prove06/navigation.ejs') %>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="product-slider" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <% if (prods.length > 0) { count = 0; %>
+                                <% for (let product of prods) { %>
+                                    <li data-target="#product-slider" data-slide-to="<%= count %>" class="<% if (count === 0) { %>active<% } %>"></li>
+                                <% count++; } %> 
                             <% } %>
+                        </ol>
+                        <div class="carousel-inner" role="listbox">
+                            <% if (prods.length > 0) { count = 0; %>
+                                <% for (let product of prods) { %>
+                                <div class="carousel-item <% if (count === 0) { %>active<% } %>">
+                                    <div class="card card-index mb-3 d-block w-100">
+                                        <div clss="row no-gutters">
+                                            <div class="card-body">
+                                                <h2 class="card-title"><%= product.title %></h2>
+                                                <p class="card-title">by <%= product.author %></p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <img src="<%= product.imageUrl %>"
+                                                    alt="<%= product.title %>" class="card-img d-block w-100">
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="card-body">
+                                                        <h2 class="card-text">$<%= (product.price).toFixed(2) %></h2>
+                                                        <p class="card-text"><%= product.description %></p>
+                                                    <div class="card__actions">
+                                                        <% if (isAuthenticated) { %>
+                                                            <%- include('../../includes/prove06/add-to-cart.ejs', {product: product}) %>
+                                                        <% } %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% count++; } %>
+                            <% } else { %>
+                                <h1>No Products Found!</h1>
+                            <% } %>  
                         </div>
-                    </article>
-                <% } %>
+                        <a class="carousel-control-prev" href="#product-slider" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#product-slider" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
             </div>
-        <% } else { %>
-            <h1>No Products Found!</h1>
-        <% } %>
+        </div>    
     </main>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <%- include('../../includes/end.ejs') %>

@@ -27,4 +27,16 @@
       border: 1px solid #1b4b52;
       color: #1b4b52;
   }
-  
+
+  .order-container {
+    width: 60rem;
+    margin: auto;
+  }
+
+  .orders {
+      width: 100%;
+      text-align: left;
+      padding: .25rem 1rem;
+      border: none;
+      text-decoration: none;
+  }

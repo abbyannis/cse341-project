@@ -116,14 +116,26 @@ exports.postCart = (req, res, next) => {
 exports.updateCart = (req, res, next) => {
   const prodId = req.body.productId;
   const quantity = req.body.quantity;
-  Product.findById(prodId)
+  if (quantity < 1) {
+    req.user
+    .removeFromCart(prodId)
+    .then(result => {
+      res.redirect('/proveAssignments/06/shop/cart');
+    })
+    .catch(err => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
+  } else {
+    Product.findById(prodId)
     .then(product => {
       return req.user.updateCart(product, quantity);
     })
     .then(result => {
       res.redirect('/proveAssignments/06/shop/cart');
     });
-
+  }
 };
 
 exports.postCartDeleteProduct = (req, res, next) => {

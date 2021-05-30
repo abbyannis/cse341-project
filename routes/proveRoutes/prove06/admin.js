@@ -24,6 +24,10 @@ router.post(
             .isString()
             .isLength({ min: 3 })
             .trim(),
+        body('author', 'Author(s) required')
+            .isString()
+            .isLength({ min: 1 })
+            .trim(),
         body('imageUrl', 'Please enter a valid URL')
             .isURL(),
         body('price', 'Please enter a valid price')

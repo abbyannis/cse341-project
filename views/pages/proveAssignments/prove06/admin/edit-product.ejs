@@ -22,6 +22,16 @@
                 >
             </div>
             <div class="form-control">
+                <label for="author">Author(s)</label>
+                <input
+                class="<%= validationErrors.find(e => e.param === 'author') ? 'invalid' : '' %>"  
+                    type="text" 
+                    name="author" 
+                    id="author" 
+                    value="<% if (editing || hasError) { %><%= product.author %><% } %>"
+                >
+            </div>
+            <div class="form-control">
                 <label for="imageUrl">Image URL</label>
                 <input
                     class="<%= validationErrors.find(e => e.param === 'imageUrl') ? 'invalid' : '' %>"  

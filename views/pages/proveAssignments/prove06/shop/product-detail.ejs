@@ -5,6 +5,8 @@
         <%- include('../../includes/prove06/navigation.ejs') %>
         <main class="centered details">
             <h1><%= product.title %></h1>
+            <p style="text-align:center;">by <%= product.author %></p>
+
             <hr>
             <div class="image">
                 <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
