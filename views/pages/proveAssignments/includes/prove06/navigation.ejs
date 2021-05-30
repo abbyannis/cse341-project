@@ -9,7 +9,7 @@
         <ul class="main-header-item-list">
             <li class="main-header-item"><a href="/">CSE341-Home</a></li>
             <li class="main-header-item">
-                <a class="<%= path === '/' ? 'active' : '' %>" href="../../../../proveAssignments/06/">Shop</a>
+                <a class="<%= path === '/' ? 'active' : '' %>" href="../../../../proveAssignments/06/">Shop Home</a>
             </li>
             <li class="main-header-item">
                 <a class="<%= path === '/products' ? 'active' : '' %>" href="../../../../proveAssignments/06/shop/products">Products</a>
@@ -46,9 +46,18 @@
                     <a class="<%= path === '/signup' ? 'active' : '' %>" href="../../../../proveAssignments/06/auth/signup">Signup</a>
                 </li>
             <% } else { %>
-                <li class="main-header-item-name">
-                    <a class="active">Hi, <%= currentUser.first %>!</a>
+                <li class="main-header-item">
+                    <a class="<%= path === '/edit-profile' ? 'active' : '' %>" href="../../../../proveAssignments/06/auth/edit-profile"><%= currentUser.first %> <%= currentUser.last %></a>
                 </li>
+                <!-- <li class="dropdown main-header-item">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= currentUser.first %> <%= currentUser.last %><span class="caret"></span></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="../../../../proveAssignments/06/auth/edit-profile">Profile</a></li>
+                      </ul>
+                  </li> -->
+                <!-- <li class="main-header-item-name">
+                    <a class="active">Hi, <%= currentUser.first %>!</a>
+                </li> -->
                 <li class="main-header-item">
                     <form action="../../../../proveAssignments/06/auth/logout" method="POST">
                         <input type="hidden" name="_csrf" value="<%= csrfToken %>">

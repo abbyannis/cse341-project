@@ -74,3 +74,8 @@
     color: #B00000;
     text-align: center;
   }
+
+  .underline {
+    text-decoration: underline;
+    color: #2c7783;
+  }

@@ -5,6 +5,12 @@
     <body>
         <%- include('../../includes/prove06/navigation.ejs') %>
         <main>
+            <ul class="user__item-list">
+                <li class="user__item">
+                    <a class="underline" href="../../../../proveAssignments/06/auth/edit-profile">Edit Current User Profile</a>
+                </li>
+            </ul>
+            
             <% if (users.length > 0) { %>
                 <ul class="user__item-list">
                     <% users.forEach(u => { %>

@@ -57,6 +57,62 @@ exports.getSignup = (req, res, next) => {
     });
 };
 
+exports.getProfile = (req, res, next) => {
+    let message = req.flash('notification');
+    if (message.length > 0) {
+        message = message[0];
+    } else {
+        message = null;
+    }
+    res.render('pages/proveAssignments/prove06/auth/edit-profile', {
+        path: '/edit-profile',
+        pageTitle: 'Edit Profile',
+        errorMessage: "",
+        message: message,
+        userType: req.session.userType,
+        currentUser: req.session.user,
+        oldInput: {
+            first: req.session.user.first,
+            last: req.session.user.last, 
+            email: req.session.user.email, 
+            password: "", 
+            confirmPassword: "" 
+        },
+        validationErrors: []
+    });
+};
+
+exports.getUpdatePassword = (req, res, next) => {
+    const userId = req.session.user._id;
+    console.log(userId);
+    User.findOne(userId)
+        .then(user => {
+            let message = req.flash('notification');
+            if (message.length > 0) {
+                message = message[0];
+            } else {
+                message = null;
+            }
+            
+            res.render('pages/proveAssignments/prove06/auth/update-password', {
+                path: '/update-password',
+                pageTitle: 'Update Password',
+                errorMessage: "",
+                message: message,
+                userType: req.session.userType,
+                currentUser: req.session.user,
+                password: "",
+                confirmPassword: "",
+                userId: userId, 
+            });
+        })
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+          });
+}
+
 exports.postLogin = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
@@ -184,6 +240,95 @@ exports.postSignup = (req, res, next) => {
             return next(error);
           });
 };
+
+exports.postUpdateProfile = (req, res, next) => {
+    const first = req.body.first;
+    const last = req.body.last;
+    const email = req.body.email;
+    const userId = req.body.userId;
+    const errors = validationResult(req);
+    
+    if (!errors.isEmpty()) {
+        console.log(errors.array());
+        return res.status(422).render('pages/proveAssignments/prove06/auth/edit-profile', {
+            path: '/edit-profile',
+            pageTitle: 'Edit Profile',
+            errorMessage: errors.array()[0].msg,
+            message: "",
+            userType: req.session.user.userType,
+            currentUser: req.session.user,
+            oldInput: { 
+                first: first,
+                last: last,
+                email: email, 
+                password: "", 
+                confirmPassword: "" 
+            },
+            validationErrors: errors.array()
+        });
+    }
+    User.findById(userId).then(user => {
+        console.log(user);
+        user.first = first;
+        req.session.user.first = first;
+        user.last = last;
+        req.session.user.last = last;
+        user.email = email;
+        req.session.user.email = email;
+        console.log(req.session.user.email);
+        console.log(email);
+        return user.save()
+      })  
+      .then(result => {
+        req.flash('notification', 'Profile Updated');
+        res.redirect('../../../../proveAssignments/06/auth/edit-profile');
+      })
+      .catch(err => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+      });
+};
+
+exports.postUpdatePassword = (req, res, next) => {
+    const newPassword = req.body.password;
+    const newConfirmPassword = req.body.confirmPassword;
+    const userId = req.body.userId;
+    let resetUser;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).render('pages/proveAssignments/prove06/auth/update-password', {
+            path: '/update-password',
+            pageTitle: 'UpdatePassword',
+            errorMessage: errors.array()[0].msg,
+            message: "",
+            userType: req.session.userType,
+            currentUser: req.session.user,
+            password: newPassword,
+            confirmPassword: newConfirmPassword,
+            userId: userId,
+            validationErrors: errors.array()
+        });
+    }
+    User.findById(userId)
+    .then(user => {
+        resetUser = user;
+        return bcrypt.hash(newPassword, 12);
+    })
+    .then(hashedPassword => {
+        resetUser.password = hashedPassword;
+        return resetUser.save();
+    })  
+    .then(result => {
+        req.flash('notification', 'Password Updated');
+        res.redirect('/proveAssignments/06/auth/update-password');
+    })
+    .catch(err => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+      });
+}
 
 exports.postLogout = (req, res, next) => {
     req.session.destroy(err => {
