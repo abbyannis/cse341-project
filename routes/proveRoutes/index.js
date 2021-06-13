@@ -7,6 +7,7 @@ routes
     .use('/04', require('./prove04'))
     .use('/05', require('./prove05'))
     .use('/06', require('./prove06'))
+    .use('/08.1', require('./prove08.1'))
     .get('/', (req, res, next) => {
         res.render('pages/proveAssignments/', {
             pagetTitle: 'Prove Assignments',
@@ -18,9 +19,9 @@ routes
             .render('pages/proveAssignments/prove06/404', { 
                 pageTitle: '404 - Page Not Found', 
                 path: req.url,
-                isAuthenticated: req.session.isLoggedIn,
-                userType: req.session.userType,
-                currentUser: req.session.user
+                isAuthenticated: false,
+                userType: false,
+                currentUser: false
             });
     });
 

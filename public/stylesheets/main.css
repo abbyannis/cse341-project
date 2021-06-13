@@ -120,4 +120,28 @@ form {
   font-weight: bold;
 }
 
+.pagination {
+  margin-top: 2rem;
+  text-align: center;
+}
+  
+.pagination a {
+  text-decoration: none;
+  padding: 0.5rem;
+  color: #2c7783;
+  border: 1px solid #2c7783;
+  margin: 0 1rem;
+}
 
+.pagination a:hover,
+.pagination a:active, 
+.pagination a.active {
+  background: #2c7783;
+  color: white;
+}
+
+.center_div {
+  margin: auto;
+  width: 20rem;
+  text-align: center;
+}

@@ -3,8 +3,8 @@ const path = require('path');
 const express = require('express');
 const { check, body } = require('express-validator');
 
-const adminController = require('../../../controllers/prove06/admin');
-const isAdmin = require('../../../middleware/prove05/is-admin');
+const adminController = require('../../../controllers/prove08/admin');
+const isAdmin = require('../../../middleware/prove08/is-admin');
 
 const router = express.Router();
 
@@ -28,8 +28,6 @@ router.post(
             .isString()
             .isLength({ min: 1 })
             .trim(),
-        body('imageUrl', 'Please enter a valid URL')
-            .isURL(),
         body('price', 'Please enter a valid price')
             .isFloat(),
         body('description', 'Description must be between 10 and 2000 characters')
@@ -51,8 +49,6 @@ router.post(
             .isString()
             .isLength({ min: 3 })
             .trim(),
-        body('imageUrl', 'Please enter a valid URL')
-            .isURL(),
         body('price', 'Please enter a valid price')
             .isFloat(),
         body('description', 'Description must be between 10 and 2000 characters')

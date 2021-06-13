@@ -3,7 +3,7 @@ const path = require('path');
 const express = require('express');
 
 const shopController = require('../../../controllers/prove05/shop');
-const isAuth = require('../../../middleware/is-auth');
+const isAuth = require('../../../middleware/prove05/is-auth');
 
 const router = express.Router();
 

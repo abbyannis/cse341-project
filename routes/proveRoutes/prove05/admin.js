@@ -3,7 +3,7 @@ const path = require('path');
 const express = require('express');
 
 const adminController = require('../../../controllers/prove05/admin');
-const isAdmin = require('../../../middleware/is-admin');
+const isAdmin = require('../../../middleware/prove05/is-admin');
 
 const router = express.Router();
 

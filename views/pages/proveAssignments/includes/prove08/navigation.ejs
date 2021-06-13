@@ -1,0 +1,120 @@
+<div class="backdrop"></div>
+<div class="header_title">
+    <h1>The Shop</h1>
+    <p>Prove 08</p>
+</div>
+<header class="main-header">
+    <button id="side-menu-toggle">Menu</button>
+    <nav class="main-header-nav">
+        <ul class="main-header-item-list">
+            <li class="main-header-item"><a href="/">CSE341-Home</a></li>
+            <li class="main-header-item">
+                <a class="<%= path === '/' ? 'active' : '' %>" href="../../../../proveAssignments/08/">Shop Home</a>
+            </li>
+            <li class="main-header-item">
+                <a class="<%= path === '/products' ? 'active' : '' %>" href="../../../../proveAssignments/08/shop/products">Products</a>
+            </li>
+            <% if (isAuthenticated) { %>
+                <li class="main-header-item">
+                    <a class="<%= path === '/cart' ? 'active' : '' %>" href="../../../../proveAssignments/08/shop/cart">Cart</a>
+                </li>
+                <li class="main-header-item">
+                    <a class="<%= path === '/orders' ? 'active' : '' %>" href="../../../../proveAssignments/08/shop/orders">Orders</a>
+                </li>
+                <% if (userType === 'admin') { %>
+                    <li class="main-header-item">
+                        <a class="<%= path === '/admin/add-product' ? 'active' : '' %>" href="../../../../proveAssignments/08/admin/add-product">Add Product
+                        </a>
+                    </li>
+                    <li class="main-header-item">
+                        <a class="<%= path === '/admin/products' ? 'active' : '' %>" href="../../../../proveAssignments/08/admin/products">Admin Products
+                        </a>
+                    </li>
+                    <li class="main-header-item">
+                        <a class="<%= path === '/admin/users' ? 'active' : '' %>" href="../../../../proveAssignments/08/admin/users">Users
+                        </a>
+                    </li>
+                <% } %>
+            <% } %>
+        </ul>
+        <ul class="main-header-item-list">
+            <% if (!isAuthenticated) { %>
+                <li class="main-header-item">
+                    <a class="<%= path === '/login' ? 'active' : '' %>" href="../../../../proveAssignments/08/auth/login">Login</a>
+                </li>
+                <li class="main-header-item">
+                    <a class="<%= path === '/signup' ? 'active' : '' %>" href="../../../../proveAssignments/08/auth/signup">Signup</a>
+                </li>
+            <% } else { %>
+                <li class="main-header-item">
+                    <a class="<%= path === '/edit-profile' ? 'active' : '' %>" href="../../../../proveAssignments/08/auth/edit-profile"><%= currentUser.first %> <%= currentUser.last %></a>
+                </li>
+                <!-- <li class="dropdown main-header-item">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= currentUser.first %> <%= currentUser.last %><span class="caret"></span></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="../../../../proveAssignments/08/auth/edit-profile">Profile</a></li>
+                      </ul>
+                  </li> -->
+                <!-- <li class="main-header-item-name">
+                    <a class="active">Hi, <%= currentUser.first %>!</a>
+                </li> -->
+                <li class="main-header-item">
+                    <form action="../../../../proveAssignments/08/auth/logout" method="POST">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button type="submit">Logout</button>
+                    </form>
+                </li>
+            <% } %>
+        </ul>
+    </nav>
+</header>
+
+<nav class="mobile-nav">
+        <ul class="mobile-nav__item-list">
+                <li class="mobile-nav__item">
+                    <a class="<%= path === '/' ? 'active' : '' %>" href="../../../../proveAssignments/08/">Shop</a>
+                </li>
+                <li class="mobile-nav__item">
+                    <a class="<%= path === '/products' ? 'active' : '' %>" href="../../../../proveAssignments/08/products">Products</a>
+                </li>
+                <% if (isAuthenticated) { %>
+                    <li class="mobile-nav__item">
+                        <a class="<%= path === '/cart' ? 'active' : '' %>" href="../../../../proveAssignments/08/cart">Cart</a>
+                    </li>
+                    <li class="mobile-nav__item">
+                        <a class="<%= path === '/orders' ? 'active' : '' %>" href="../../../../proveAssignments/08/orders">Orders</a>
+                    </li>
+                    <% if (userType === 'admin') { %>
+                        <li class="mobile-nav__item">
+                            <a class="<%= path === '/admin/add-product' ? 'active' : '' %>" href="../../../../proveAssignments/08/admin/add-product">Add Product
+                            </a>
+                        </li>
+                        <li class="mobile-nav__item">
+                            <a class="<%= path === '/admin/products' ? 'active' : '' %>" href="../../../../proveAssignments/08/admin/products">Admin Products
+                            </a>
+                        </li>
+                        <li class="main-header-item">
+                            <a class="<%= path === '/admin/users' ? 'active' : '' %>" href="../../../../proveAssignments/08/admin/users">Users
+                            </a>
+                        </li>
+                    <% } %>
+                <% } %>
+            </ul>
+            <ul class="mobile-nav__item-list">
+                <% if (!isAuthenticated) { %>
+                    <li class="mobile-nav__item">
+                        <a class="<%= path === '/login' ? 'active' : '' %>" href="../../../../proveAssignments/08/auth/login">Login</a>
+                    </li>
+                    <li class="mobile-nav__item">
+                        <a class="<%= path === '/signup' ? 'active' : '' %>" href="../../../../proveAssignments/08/auth/signup">Signup</a>
+                    </li>
+                <% } else { %>
+                    <li class="mobile-nav__item">
+                        <form action="../../../../proveAssignments/08/auth/logout" method="POST">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <button type="submit">Logout</button>
+                        </form>
+                    </li>
+                <% } %>
+            </ul>
+</nav>
