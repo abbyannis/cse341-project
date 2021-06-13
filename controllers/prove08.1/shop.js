@@ -4,11 +4,26 @@ const Cart = require('../../models/prove08.1/cart');
 const ITEMS_PER_PAGE = 10;
 
 exports.getProducts = (req, res, next) => {
+  const page = req.query.page || 1;
+  const offset = (page - 1) * ITEMS_PER_PAGE;
+
   Product.fetchAll(products => {
+    const paginatedItems = products.slice(offset).slice(0, ITEMS_PER_PAGE);
+    const total_items = products.length;
+    const total_pages = Math.ceil(total_items / ITEMS_PER_PAGE);
     res.render('pages/proveAssignments/prove08.1/shop/product-list', {
-      prods: products,
-      pageTitle: 'All Products',
-      path: '/products'
+      prods: paginatedItems,
+      page: page,
+      pageTitle: 'Shop',
+      path: '/products',
+      totalProducts: total_items,
+      hasNextPage: ITEMS_PER_PAGE * page < total_items,
+      hasPreviousPage: page > 1,
+      hasThirdPage: 3 < total_pages,
+      hasFourthPage: 4 < total_pages,
+      nextPage: (page * 1) + 1,
+      previousPage: (page * 1) - 1,
+      maxPage: total_pages
     });
   });
 };

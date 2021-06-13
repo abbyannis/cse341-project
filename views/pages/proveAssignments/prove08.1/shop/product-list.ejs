@@ -12,11 +12,11 @@
                             <article class="card product-item">
                                 <header class="card__header">
                                     <h1 class="product__title">
-                                        <%= product.title %>
+                                        <%= product.name %>
                                     </h1>
                                 </header>
                                 <div class="card__image">
-                                    <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
+                                    <img src="<%= product.imageUrl %>" alt="<%= product.name %>">
                                 </div>
                                 <div class="card__content">
                                     <h2 class="product__price">$
@@ -32,6 +32,40 @@
                                 </div>
                             </article>
                             <% } %>
+                    </div>
+                    <div class="center_div">
+                        <section class="pagination">
+                            <% if(page != 1) { %>
+                                <a href="/proveAssignments/08.1/?page=1">First</a>
+                            <% } %>
+                            <% if (hasPreviousPage && previousPage !== 1 && page != maxPage && page != maxPage - 1) { %>
+                                <a href="/proveAssignments/08.1/?page=<%= previousPage %>"><%= previousPage %></a>
+                                <a href="/proveAssignments/08.1/?page=<%= page %>" class="active"><%= page %></a>
+                            <% } else if (page == maxPage || page == maxPage - 1) { %>
+                                <a href="/proveAssignments/08.1/?page=<%= previousPage - 1 %>"><%= previousPage - 1 %></a>
+                                <a href="/proveAssignments/08.1/?page=<%= previousPage %>"><%= previousPage %></a>
+                                <a href="/proveAssignments/08.1/?page=<%= page %>" class="active"><%= page %></a>
+                            <% } else { %>
+                                <a href="/proveAssignments/08.1/?page=<%= page %>" class="active"><%= page %></a>
+                            <% } %>
+                            <% if (hasNextPage && nextPage != maxPage) { %>
+                                <a href="/proveAssignments/08.1/?page=<%= nextPage %>"><%= nextPage %></a>
+                                <% if (page == 1 && hasThirdPage) { %>
+                                    <a href="/proveAssignments/08.1/?page=3">3</a>
+                                <% } %>
+                                <% if ((page == 1 || page == 2) && hasFourthPage) { %>
+                                    <a href="/proveAssignments/08.1/?page=4">4</a>
+                                <% } %>
+                                <% if (nextPage + 1 == maxPage) { %>
+                                    <a href="/proveAssignments/08.1/?page=<%= maxPage %>"><%= maxPage %></a>
+                                <% } else { %>
+                                    <a href="/proveAssignments/08.1/?page=<%= maxPage %>">Last</a>
+                                <% } %>
+                            <% } %>
+                            <% if (nextPage == maxPage && nextPage + 1 != maxPage) { %>
+                                <a href="/proveAssignments/08.1/?page=<%= maxPage %>"><%= maxPage %></a>
+                            <% } %>
+                        </section>
                     </div>
                     <% } else { %>
                         <h1>No Products Found!</h1>
