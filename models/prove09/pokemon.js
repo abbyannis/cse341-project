@@ -26,7 +26,7 @@ const getPokemonFromWeb = cb => {
     })
 };
 
-module.exports = class Product {
+module.exports = class Pokemon {
   constructor(name, url) {
     this.name = name;
     this.url = url;
