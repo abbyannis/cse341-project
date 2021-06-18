@@ -1,0 +1,34 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/stylesheets/product.css">
+    </head>
+
+    <body>
+        <%- include('../includes/prove09/navigation.ejs') %>
+
+            <main>
+                <% if (pokemon.results.length > 0) { %>
+                    <div class="grid">
+                        <% for (let pokes of pokemon.results) { %>
+                            <article class="card product-item">
+                                <header class="card__header">
+                                    <h1 class="product__title">
+                                        <%= pokes.name %>
+                                    </h1>
+                                </header>
+                                <div class="card__image">
+                                    <img src="<%= pokes.url %>" alt="<%= pokes.url %>">
+                                </div>
+                            </article>
+                            <% } %>
+                    </div>
+                    <div class="center_div">
+                        <section class="pagination">
+                            <a href="">Previous</a>
+                            <a href="">Next</a>
+                        </section>
+                    </div>
+                    <% } else { %>
+                        <h1>No Products Found!</h1>
+                        <% } %>
+            </main>
+            <%- include('../includes/end.ejs') %>

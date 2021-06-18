@@ -1,0 +1,81 @@
+const path = require('path');
+
+const express = require('express');
+const { check, body } = require('express-validator');
+
+const adminController = require('../../../controllers/practice09/admin');
+const isAdmin = require('../../../middleware/practice09/is-admin');
+
+const router = express.Router();
+
+// /admin/add-product => GET
+router.get('/add-product', isAdmin, adminController.getAddProduct);
+
+// /admin/products => GET
+router.get('/products', isAdmin, adminController.getProducts);
+
+router.get('/users', isAdmin, adminController.getUsers);
+
+// /admin/add-product => POST
+router.post(
+    '/add-product', 
+    [
+        body('title', 'Title required')
+            .isString()
+            .isLength({ min: 3 })
+            .trim(),
+        body('author', 'Author(s) required')
+            .isString()
+            .isLength({ min: 1 })
+            .trim(),
+        body('price', 'Please enter a valid price')
+            .isFloat(),
+        body('description', 'Description must be between 10 and 2000 characters')
+            .isLength({ min: 10, max: 2000 })
+            .trim()
+    ],
+    isAdmin, 
+    adminController.postAddProduct
+);
+
+router.get('/edit-product/:productId', isAdmin, adminController.getEditProduct);
+
+router.get('/edit-user/:userId', isAdmin, adminController.getUpdateUser);
+
+router.post(
+    '/edit-product',
+    [
+        body('title', 'Title required')
+            .isString()
+            .isLength({ min: 3 })
+            .trim(),
+        body('price', 'Please enter a valid price')
+            .isFloat(),
+        body('description', 'Description must be between 10 and 2000 characters')
+            .isLength({ min: 10, max: 2000 })
+            .trim()
+    ],
+    isAdmin, 
+    adminController.postEditProduct
+);
+
+router.delete('/product/:productId', isAdmin, adminController.deleteProduct);
+
+router.post('/update-user', 
+    [ 
+        check('email')
+            .isEmail()
+            .withMessage('Please enter a valid email')
+            .normalizeEmail(),
+        body('first')
+            .isLength({ min: 1 })
+            .withMessage('First name required'),
+        body('last')
+            .isLength({ min: 1 })
+            .withMessage('Last name required')   
+    ],
+isAdmin, adminController.postUpdateUser);
+
+router.post('/delete-user', isAdmin, adminController.postDeleteUser);
+
+module.exports = router;
