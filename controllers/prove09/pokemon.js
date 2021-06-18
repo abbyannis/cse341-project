@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const Pokemon = require('../../models/prove09/Pokemon');
+const Pokemon = require('../../models/prove09/pokemon');
 
 const url = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=10";
 const settings = { method: "Get" };
