@@ -11,6 +11,12 @@
     margin: 1rem;
 }
 
+.pokemon-item {
+    width: 20rem;
+    max-width: 95%;
+    margin: 0.5rem;
+}
+
 .product__title {
     font-size: 1.2rem;
     text-align: center;

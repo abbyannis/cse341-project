@@ -108,6 +108,10 @@
   .card__content {
     padding: 1rem;
   }
+
+  .card__header_pokemon {
+    padding: 0.5rem;
+  }
   
   .card__header h1,
   .card__header p,

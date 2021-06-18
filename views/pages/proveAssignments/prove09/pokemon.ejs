@@ -4,27 +4,35 @@
 
     <body>
         <%- include('../includes/prove09/navigation.ejs') %>
-
             <main>
                 <% if (pokemon.results.length > 0) { %>
                     <div class="grid">
                         <% for (let pokes of pokemon.results) { %>
-                            <article class="card product-item">
-                                <header class="card__header">
+                            <article class="card pokemon-item">
+                                <header class="card__header_pokemon">
                                     <h1 class="product__title">
-                                        <%= pokes.name %>
+                                        <a href="<%= pokes.url %>"><%= pokes.name[0].toUpperCase() + pokes.name.slice(1) %></a>
                                     </h1>
                                 </header>
-                                <div class="card__image">
-                                    <img src="<%= pokes.url %>" alt="<%= pokes.url %>">
-                                </div>
                             </article>
                             <% } %>
                     </div>
                     <div class="center_div">
                         <section class="pagination">
-                            <a href="">Previous</a>
-                            <a href="">Next</a>
+                            <%if(page != 1) { %>
+                                <a href="/proveAssignments/09/?page=1">First</a>
+                            <% } %>
+                            <% if(hasPreviousPage && previousPage != 1) { %>
+                                <a href="/proveAssignments/09/?page=<%= previousPage %>">Prev</a>
+                            <% } %>
+                            <a href="/proveAssignments/09/?page=<%= page %>"><%= page %></a>
+                            <% if(hasNextPage) { %>
+                                <a href="/proveAssignments/09/?page=<%= nextPage %>">Next</a>
+                            <% } %>
+                            <% if(nextPage != lastPage && page != lastPage) { %>
+                                <a href="/proveAssignments/09/?page=<%= lastPage %>">Last</a>
+                            <% } %>
+                            
                         </section>
                     </div>
                     <% } else { %>
