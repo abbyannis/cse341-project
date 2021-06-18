@@ -28,10 +28,10 @@
                                 <a href="/proveAssignments/09/?page=<%= previousPage %>">Prev</a>
                             <% } %>
                             <a href="/proveAssignments/09/?page=<%= page %>"><%= page %></a>
-                            <% if(hasNextPage) { %>
+                            <% if(hasNextPage && nextPage != lastPage) { %>
                                 <a href="/proveAssignments/09/?page=<%= nextPage %>">Next</a>
                             <% } %>
-                            <% if(nextPage != lastPage && page != lastPage) { %>
+                            <% if(page != lastPage) { %>
                                 <a href="/proveAssignments/09/?page=<%= lastPage %>">Last</a>
                             <% } %>
                             
