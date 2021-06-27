@@ -1,0 +1,34 @@
+{
+    "avengers": [
+        {
+            "name": "Tony Stark",
+            "superName": "Iron Man",
+            "imageUrl": "https://www.syfy.com/sites/syfy/files/styles/1200x680_hero/public/syfywire_blog_post/2018/10/avengers-tony-stark-iron-man-movie-hd-wallpaper-2880x1800-1920x1080.jpg"
+        },
+        {
+            "name": "Steve Rogers",
+            "superName": "Captain America",
+            "imageUrl": "https://www.thewrap.com/wp-content/uploads/2016/11/Chris-Evans-Captain-America-Trilogy-618x400.jpg"
+        },
+        {
+            "name": "Thor Odinson",
+            "superName": "Thor",
+            "imageUrl": "https://www.mctv.com.au/wp-content/uploads/2021/02/chris-hemsworth-thor.jpg"
+        },
+        {
+            "name": "Bruce Banner",
+            "superName": "The Hulk",
+            "imageUrl": "https://media.comicbook.com/uploads1/2015/05/hulk-age-of-ultron-character-poster-134644-1280x0.jpg"
+        },
+        {
+            "name": "Natasha Romanova",
+            "superName": "Black Widow",
+            "imageUrl": "https://townsquare.media/site/442/files/2015/06/black-widow-marvel-pic-630x420.jpg"
+        },
+        {
+            "name": "Clint Barton",
+            "superName": "Hawkeye",
+            "imageUrl": "https://media.comicbook.com/2019/07/avengers-endgame-why-hawkeye-cut-infinity-war-1181035-1280x0.jpeg"
+        }
+    ]
+}

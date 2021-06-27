@@ -1,4 +1,7 @@
 const routes = require('express').Router();
+const bodyParser = require('body-parser');
+
+routes.use(bodyParser.json());
 
 routes
    // .use('/01', require('./pa01'))
@@ -10,6 +13,7 @@ routes
     .use('/08.1', require('./prove08.1'))
     // .use('/09', require('./practice09'))
     .use('/09', require('./prove09'))
+    .use('/10', require('./prove10/prove10'))
     .get('/', (req, res, next) => {
         res.render('pages/proveAssignments/', {
             pagetTitle: 'Prove Assignments',
