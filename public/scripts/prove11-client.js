@@ -48,7 +48,6 @@ const populateList = () => {
                     h3.classList.add('product__title');
                     h3.appendChild(document.createTextNode(avenger.name));
                     img.src = avenger.imageUrl;
-                    console.log(img.src);
                     const h4 = document.createElement('h4');
                     h4.classList.add('card__content');
                     h4.appendChild(document.createTextNode(avenger.superName));
