@@ -14,6 +14,7 @@ routes
     // .use('/09', require('./practice09'))
     .use('/09', require('./prove09'))
     .use('/10', require('./prove10/prove10'))
+    .use('/11', require('./prove11/prove11'))
     .get('/', (req, res, next) => {
         res.render('pages/proveAssignments/', {
             pagetTitle: 'Prove Assignments',

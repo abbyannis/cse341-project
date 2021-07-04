@@ -120,7 +120,7 @@ exports.postLogin = (req, res, next) => {
     if (!errors.isEmpty()) {
         return res.status(422).render('pages/proveAssignments/prove06/auth/login', {
             path: '/login',
-            pageTitle: 'Login',
+            pageTitle: 'Login', 
             errorMessage: errors.array()[0].msg,
             userType: req.session.userType,
             currentUser: req.session.user,

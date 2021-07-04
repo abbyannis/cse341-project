@@ -1,0 +1,36 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/stylesheets/product.css">
+    </head>
+
+    <body>
+        <%- include('../includes/prove11/navigation.ejs') %>
+            <main>
+                <div class="prove10">
+                    <div class="product-form">
+                        <div class="form-control">
+                            <h4>Name</h4>
+                            <input type="text" id="newName">
+                            <h4>Superhero Name</h4>
+                            <input type="text" id="newSuperName">
+                            <h4>Image URL</h4>
+                            <input type="text" id="imageUrl">
+                            <button class="btn btn_flex" id="submitName" onclick="submitName()">Add Avenger</button>
+                        </div>
+                    </div>
+                    <div class="grid">
+                        <ul id="nameList" class="prove10_list">
+
+                        </ul>
+                    </div>
+                </div>
+            </main>
+            <script>
+                // var socket = io();
+                // socket.on('update-list', () => {
+                //     console.log('made it')
+                //     populateList();
+                // })
+            </script>
+            <script src="/scripts/prove11-client.js"></script>
+            <script src="/socket.io/socket.io.js"></script>
+            <%- include('../includes/end.ejs') %>

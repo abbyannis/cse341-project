@@ -9,6 +9,13 @@ const multer = require('multer');
 const PORT = process.env.PORT || 5000 // So we can run on heroku || (OR) localhost:5000
 
 const app = express();
+
+// const http = require('http');
+// const socket = require('./public/scripts/socket');
+// const server = http.createServer(app);
+// // const { Server } = require('socket.io');
+// const io = require('./public/scripts/socket').init(server);
+
 const fileStorage = multer.diskStorage( {
    destination: (req, file, cb) => {
       cb(null, 'images');
@@ -32,5 +39,22 @@ app.use(express.static(path.join(__dirname, 'public')))
    .set('view engine', 'ejs')
    .use(bodyParser.urlencoded({extended: false})) // For parsing the body of a POST
    .use(multer({storage: fileStorage, fileFilter: fileFilter}).single('image'))
-   .use('/', routes)
-   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+   .use('/', routes);
+
+const server = app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
+const io = require('socket.io')(server);
+
+io.on('connection', (socket) => {
+   console.log('Client Connected');
+   socket.on('disconnect', () => {
+      console.log('user disconnected');
+   })
+   socket.on('newSuper', () => {
+      console.log('made it here dumb'); 
+      socket.broadcast.emit('update-list');
+   })
+})
+
+
+
