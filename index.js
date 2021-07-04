@@ -10,12 +10,6 @@ const PORT = process.env.PORT || 5000 // So we can run on heroku || (OR) localho
 
 const app = express();
 
-// const http = require('http');
-// const socket = require('./public/scripts/socket');
-// const server = http.createServer(app);
-// // const { Server } = require('socket.io');
-// const io = require('./public/scripts/socket').init(server);
-
 const fileStorage = multer.diskStorage( {
    destination: (req, file, cb) => {
       cb(null, 'images');

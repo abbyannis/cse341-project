@@ -1,10 +1,3 @@
-// var socket = io('/');
-
-// sockets.on('update-list', () => {
-//     console.log('made it')
-//     populateList();
-// })
-
 const submitName = () => {
     const newName = document.getElementById('newName').value;
     const newSuperName = document.getElementById('newSuperName').value;
